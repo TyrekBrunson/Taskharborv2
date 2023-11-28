@@ -1,0 +1,7 @@
+.root
+
+.button {
+    -fx-background-color: #FA8072;
+    -fx-text-fill: White;
+    fx-text-fill: Blue;
+}
