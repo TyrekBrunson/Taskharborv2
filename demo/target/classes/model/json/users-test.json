@@ -1,0 +1,35 @@
+[
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "password": "password123",
+        "phoneNumber": "9876543210",
+        "address": "456 Main St, City, Country",
+        "id": "3781264a-be2c-4c14-8692-be6d14f9749e",
+        "userName": null,
+        "userRole": "Contributor",
+        "email": "alice@example.com"
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "password": "password123",
+        "phoneNumber": null,
+        "address": "456 Main St, City, Country",
+        "id": "b9d8ef42-90e7-4474-932d-e66675f78b3c",
+        "userName": null,
+        "userRole": "Contributor",
+        "email": "alice@example.com"
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "password": "password123",
+        "phoneNumber": "9876543210",
+        "address": "456 Main St, City, Country",
+        "id": "b0d91da4-a426-47e6-8a1a-95219389a3b7",
+        "userName": null,
+        "userRole": "Contributor",
+        "email": "alice@example.com"
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "id": "project1",
+        "projectName": "Allison Project",
+        "projectDate": "2023-10-06",
+        "columns": 
+        [
+            {   "columnName": "Electric Missiles",
+                "tasks":[
+                    {
+                    "taskName":"Add electricity",
+                    "priority":3,
+                    "taskDueDates":"2023-04-26",
+                    "taskNotes": "We really need to fix this"
+                    }
+                ]
+            }
+        ]
+    }
+]
