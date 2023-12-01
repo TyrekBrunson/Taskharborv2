@@ -48,4 +48,7 @@ public class comments {
                 ", comments=" + comments +
                 '}';
     }
+
+    public void add(comments newComment) {
+    }
 }
