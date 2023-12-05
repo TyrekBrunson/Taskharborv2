@@ -3,13 +3,11 @@ module taskharbor {
     requires javafx.fxml;
     requires json.simple;
 
-    opens taskharbor to javafx.fxml;
+    opens library to javafx.fxml;
 
-    exports taskharbor;
-
-    opens controllers to javafx.fxml;
-
-    exports controllers;
+    exports library;
 
     opens model to javafx.fxml;
+
+    exports model;
 }
