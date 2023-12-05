@@ -11,7 +11,7 @@
     <children>
     <ImageView>
             <image>
-                <Image url="images/Anchor.png"/> 
+                <Image url="/images/Anchor.png"/> 
             </image>
         </ImageView>
         <button fx:id="button" layoutX="72.0" layoutY="21.0" onAction="#onLoginClicked" text="Login" />
