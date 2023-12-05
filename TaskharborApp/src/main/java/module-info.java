@@ -7,6 +7,10 @@ module taskharbor {
 
     exports library;
 
+    opens controllers to javafx.fxml;
+
+    exports controllers;
+
     opens model to javafx.fxml;
 
     exports model;
