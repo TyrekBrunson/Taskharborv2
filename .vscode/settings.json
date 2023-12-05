@@ -1,3 +1,11 @@
  {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+ 
+    "terminal.integrated.profiles.osx": {
+        "x86 zsh": {
+            "path": "/usr/bin/arch",
+            "args": ["-arch", "x86_64", "/bin/zsh"]
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "x86 zsh"
 }
