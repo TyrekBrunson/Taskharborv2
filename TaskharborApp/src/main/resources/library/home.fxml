@@ -10,7 +10,8 @@
 <AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="Libary_pane" xmlns="http://javafx.com" fx:controller="com.controllers.HomeController"/>
     <children>
         <button fx:id="button" layoutX="72.0" layoutY="21.0" onAction="#onLoginClicked" text="Login" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeieght="16" minWidth="69" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+        <button fx:id="button1" layoutX="164.0" layoutY="21.0" onAction="#onSignupClicked" text="Signup" />
     </children>
  <stylesheets>
     <URL value="@styles.css" />
