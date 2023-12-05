@@ -9,6 +9,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="Libary_pane" xmlns="http://javafx.com" fx:controller="controllers.HomeController"/>
     <children>
+    <ImageView>
+            <image>
+                <Image url="images/image.png"/> <!-- Replace with the actual path -->
+            </image>
+        </ImageView>
         <button fx:id="button" layoutX="72.0" layoutY="21.0" onAction="#onLoginClicked" text="Login" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
         <button fx:id="button1" layoutX="164.0" layoutY="21.0" onAction="#onSignupClicked" text="Signup" />
