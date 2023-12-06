@@ -1,7 +1,7 @@
 module taskharbor {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires json.simple;
+    requires transitive javafx.controls;
+    requires transitive javafx.fxml;
+    requires transitive json.simple;
 
     opens library to javafx.fxml;
 
