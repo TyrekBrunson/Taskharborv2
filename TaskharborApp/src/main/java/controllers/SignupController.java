@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -25,7 +27,7 @@ public class SignupController {
     private Text signupMessage;
 
     @FXML
-    private void onSignupClicked(ActionEvent event) {
-        signupMessage.setText("Signup button clicked!");
+    private void onSignupClicked(ActionEvent event) throws IOException {
+        App.setRoot("home");;
     }
 }
