@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.beans.binding.Bindings;
 import library.App;
 
 public class HomeController implements Initializable{
@@ -37,5 +38,7 @@ public class HomeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        imageView.fitWidthProperty().bind(Bindings.subtract(Library_pane.widthProperty(), 100.0));
+        imageView.fitHeightProperty().bind(Bindings.subtract(Library_pane.heightProperty(), 100.0));
     }
 }

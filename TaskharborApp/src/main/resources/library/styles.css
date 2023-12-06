@@ -2,9 +2,19 @@
     -fx-background-color: #F5C278;
 }
 
+#centeredContainer {
+    -fx-alignment: CENTER;
+    -fx-spacing: 10; 
+}
+
+#centeredImageView {
+    -fx-fit-width: 50%; 
+    -fx-fit-height: 50%; 
+    -fx-fit-padding: 20%;
+}
+
 .button {
-    -fx-background-color: #3E82F4; 
-    -fx-text-fill: white; 
-    -fx-padding: 10px 20px;
-    -fx-font-size: 16px;
+    -fx-background-color: #3E82F4;
+    -fx-text-fill: white;
+    -fx-font-size: 1.5vw; 
 }
