@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import model.UiFacade;
@@ -16,13 +17,25 @@ public class App extends Application {
 
     private static Scene scene;
 
+
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("home"), 640, 480);
+        Parent root = loadFXML("home");
+        scene = new Scene(root, 640, 480);
+    
         stage.setScene(scene);
+        stage.setTitle("Taskharbor");
         stage.setResizable(true);
+        stage.toFront();
+    
+        // bring the stage to the front when clicked and hides it when not
+        stage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            stage.toFront();
+        });
+    
         stage.show();
     }
+    
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));

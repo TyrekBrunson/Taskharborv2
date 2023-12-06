@@ -13,4 +13,7 @@
         <Button layoutX="50" layoutY="120" onAction="#onLoginClicked" text="Login" />
         <Text fx:id="loginMessage" layoutX="50" layoutY="150" />
     </children>
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
 </AnchorPane>
