@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import library.App;
 
 public class LoginController {
 
@@ -19,14 +20,6 @@ public class LoginController {
 
     @FXML
     private void onLoginClicked(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
 
-        // Add your login logic here
-        if ("yourUsername".equals(username) && "yourPassword".equals(password)) {
-            loginMessage.setText("Login successful!");
-        } else {
-            loginMessage.setText("Login failed. Please try again.");
-        }
     }
 }
