@@ -1,9 +1,22 @@
-<?xml version="1.0" encodin?g="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.net.*?>
 
+<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="signupPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
+    <children>
+        <TextField fx:id="firstNameField" layoutX="50" layoutY="50" promptText="First Name" />
+        <TextField fx:id="lastNameField" layoutX="50" layoutY="80" promptText="Last Name" />
+        <TextField fx:id="usernameField" layoutX="50" layoutY="110" promptText="Username" />
+        <PasswordField fx:id="passwordField" layoutX="50" layoutY="140" promptText="Password" />
+        <Button layoutX="50" layoutY="180" onAction="#onSignupClicked" text="Signup" styleClass="button" />
+        <Text fx:id="signupMessage" layoutX="50" layoutY="220" />
+    </children>
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+</AnchorPane>
