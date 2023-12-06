@@ -17,15 +17,10 @@ import library.App;
 public class HomeController implements Initializable{
 
     @FXML
-    private Button button;
-    @FXML
-    private Label label;
-    @FXML
-    private Button button1;
-    @FXML
     private ImageView imageView;
     @FXML
-    private AnchorPane anchorpane;
+    private AnchorPane Library_pane;
+
     @FXML
     private void onLoginClicked(ActionEvent event) {
         try {
@@ -45,6 +40,7 @@ public class HomeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        new AnchorPane();
         imageView.setImage(new Image("/images/Anchor.png"));
     }
 }
