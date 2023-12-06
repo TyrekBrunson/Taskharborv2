@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="Libary_pane" xmlns="http://javafx.com/javafx" fx:controller="controllers.HomeController"/>
+<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="Libary_pane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.HomeController"/>
     <children>
     <ImageView>
             <image>
