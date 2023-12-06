@@ -7,8 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import model.UiFacade;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+
 
 /**
  * JavaFX App

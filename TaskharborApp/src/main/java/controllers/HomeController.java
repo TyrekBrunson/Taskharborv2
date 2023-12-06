@@ -1,11 +1,9 @@
 package controllers;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +38,15 @@ public class HomeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new AnchorPane();
-        imageView.setImage(new Image("/images/Anchor.png"));
+
+        URL imageUrl = getClass().getResource("TaskharborApp/src/main/java/images/Anchor.png");
+
+        if (imageUrl != null) {
+            // Create an Image and set it to the ImageView
+            Image image = new Image(imageUrl.toExternalForm());
+            imageView.setImage(image);
+        } else {
+            System.err.println("Image not found");
+        }
     }
 }
