@@ -5,15 +5,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import java.net.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="300" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="300" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
         <TextField fx:id="usernameField" layoutX="50" layoutY="50" promptText="Username" />
         <PasswordField fx:id="passwordField" layoutX="50" layoutY="80" promptText="Password" />
-        <Button layoutX="50" layoutY="120" onAction="#onLoginClicked" text="Login" />
+        <Button layoutX="50" layoutY="120" onAction="#onLoginClicked" text="Login" styleClass="button" />
         <Text fx:id="loginMessage" layoutX="50" layoutY="150" />
     </children>
     <stylesheets>
-        <URL value="@styles.css" />
+        <URL value="styles.css" />
     </stylesheets>
 </AnchorPane>

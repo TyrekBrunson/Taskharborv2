@@ -26,14 +26,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Taskharbor");
         stage.setResizable(true);
-        stage.toFront();
-    
-        // bring the stage to the front when clicked and hides it when not
-        stage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            stage.toFront();
-        });
-    
         stage.show();
+        stage.toFront();
+        stage.setOnCloseRequest(e -> {
+        UiFacade.getInstance();
+        });
     }
     
 
