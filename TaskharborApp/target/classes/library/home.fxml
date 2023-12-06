@@ -16,9 +16,9 @@
             </image>
         </ImageView>
 
-        <Button fx:id="button" layoutX="72.0" layoutY="21.0" onAction="#onLoginClicked" text="Login" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-        <Button fx:id="button1" layoutX="164.0" layoutY="21.0" onAction="#onSignupClicked" text="Signup" />
+        <Button fx:id="button" layoutX="200" layoutY="300" onAction="#onLoginClicked" text="Login" />
+        <Label fx:id="label" layoutX="100" layoutY="120" minHeight="16" minWidth="69" />
+        <Button fx:id="button1" layoutX="300.0" layoutY="300" onAction="#onSignupClicked" text="Signup" />
     </children>
     <stylesheets>
         <URL value="@styles.css" />

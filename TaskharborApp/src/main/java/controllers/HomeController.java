@@ -1,7 +1,6 @@
 package controllers;
 
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
@@ -38,15 +37,5 @@ public class HomeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        URL imageUrl = getClass().getResource("TaskharborApp/src/main/java/images/Anchor.png");
-
-        if (imageUrl != null) {
-            // Create an Image and set it to the ImageView
-            Image image = new Image(imageUrl.toExternalForm());
-            imageView.setImage(image);
-        } else {
-            System.err.println("Image not found");
-        }
     }
 }

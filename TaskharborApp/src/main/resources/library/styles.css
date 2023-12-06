@@ -1,7 +1,11 @@
-.root
+
+.root {
+    -fx-background-color: lightgray;
+}
 
 .button {
-    -fx-background-color: #FA8072;
-    -fx-text-fill: White;
-    fx-text-fill: Blue;
+    -fx-background-color: #4CAF50; 
+    -fx-color: white;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 16px;
 }
