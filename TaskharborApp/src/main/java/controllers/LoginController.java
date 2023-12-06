@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -19,7 +21,7 @@ public class LoginController {
     private Text loginMessage;
 
     @FXML
-    private void onLoginClicked(ActionEvent event) {
-
+    private void onLoginClicked(ActionEvent event) throws IOException {
+        App.setRoot("home");;
     }
 }
