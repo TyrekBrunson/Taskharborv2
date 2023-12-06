@@ -1,6 +1,4 @@
 module taskharbor {
-    requires transitive javafx.base;
-    requires transitive javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
     requires json.simple;

@@ -4,6 +4,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +24,8 @@ public class HomeController implements Initializable{
     private Button button1;
     @FXML
     private ImageView imageView;
+    @FXML
+    private AnchorPane anchorpane;
     @FXML
     private void onLoginClicked(ActionEvent event) {
         try {
