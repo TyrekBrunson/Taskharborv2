@@ -49,6 +49,14 @@ public class UiFacade {
         return currentUser;
     }
 
+    public ArrayList<Project> getProjects() {
+        if (currentUser != null) {
+            ProjectManager projectManager = currentUser.getProjectManager();
+            return projectManager.getAllProjects();
+        }
+        return null;
+    }
+
     public void logout() {
         currentUser = null;
     }

@@ -4,13 +4,16 @@
 
 #centeredContainer {
     -fx-alignment: CENTER;
-    -fx-spacing: 10; 
+    -fx-spacing: 20; 
 }
 
-#centeredImageView {
-    -fx-fit-width: 50%; 
-    -fx-fit-height: 50%; 
-    -fx-fit-padding: 40;
+#imageView {
+    position: absolute;
+    -fx-position: absolute;
+    -fx-translate-x: 50%;
+    -fx-translate-y: 50%;
+    -fx-fit-height: 100%;
+    -fx-fit-width: 100%;
 }
 
 .button {
