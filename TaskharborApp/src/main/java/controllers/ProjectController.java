@@ -29,6 +29,6 @@ public class ProjectController {
     @FXML
     private void addProject(ActionEvent event) {
         // Handle the button click to switch to the login view
-        UiFacade.addProject(null, null, null);
+        UiFacade.getInstance().addProject(null, null, null);
     }
 }
