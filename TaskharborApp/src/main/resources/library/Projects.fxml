@@ -11,6 +11,7 @@
     <children>
         <Label text="Projects" />
         <Button text="Add Project" onAction="#addProject" />
+        <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="back-button" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
     </children>
     <stylesheets>
         <URL value="@./styles.css" />

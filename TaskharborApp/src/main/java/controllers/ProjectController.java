@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.util.List;
 import library.App;
 import model.Project;
@@ -20,6 +22,9 @@ public class ProjectController {
 
     @FXML
     private Button switchToLoginButton;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     private void initialize() {
@@ -63,5 +68,17 @@ public class ProjectController {
         box.getStyleClass().add("project-box"); // Example CSS class
 
         return box;
+    }
+
+    @FXML
+    private void goBack() {
+        String previousFXML = App.getLastLoadedFXML();
+        if (previousFXML != null) {
+            try {
+                App.setRoot(previousFXML);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception according to your needs
+            }
+        }
     }
 }
