@@ -22,6 +22,6 @@ public class LoginController {
 
     @FXML
     private void onLoginClicked(ActionEvent event) throws IOException {
-        App.setRoot("home");;
+        App.setRoot("secondary");;
     }
 }
