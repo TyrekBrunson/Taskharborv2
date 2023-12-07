@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import model.UiFacade;
+import model.*;
 
 
 /**
@@ -20,7 +20,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = loadFXML("home");
-        scene = new Scene(root, 640, 480);
+        scene = new Scene(root, 800, 500);
     
         stage.setScene(scene);
         stage.setTitle("Taskharbor");
@@ -28,8 +28,10 @@ public class App extends Application {
         stage.show();
         stage.toFront();
         stage.setOnCloseRequest(e -> {
-        UiFacade.getInstance();
+        
         });
+
+        UiFacade facade = UiFacade.getInstance();
     }
     
 

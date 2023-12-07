@@ -6,6 +6,18 @@ import javafx.stage.Stage;
 
 public class UiFacade {
     private User currentUser;
+    private static UiFacade facade;
+
+     public static UiFacade getInstance() {
+        if(facade == null){
+            facade = new UiFacade();
+        }
+        return facade;
+    }
+
+    private UiFacade() {
+        
+    }
 
     public boolean createAccount(String firstName, String lastName, String userName, String password) {
         // Check if the username already exists
@@ -171,7 +183,5 @@ public class UiFacade {
         return false;
     }
 
-    public static Stage getInstance() {
-        return null;
-    }
+   
 }
