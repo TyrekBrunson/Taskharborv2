@@ -2,8 +2,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javafx.stage.Stage;
-
 public class UiFacade {
     private User currentUser;
     private static UiFacade facade;

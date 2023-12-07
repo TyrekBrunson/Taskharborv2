@@ -10,7 +10,7 @@
 #centeredImageView {
     -fx-fit-width: 50%; 
     -fx-fit-height: 50%; 
-    -fx-fit-padding: 20%;
+    -fx-fit-padding: 40;
 }
 
 .button {

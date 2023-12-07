@@ -12,7 +12,6 @@ public class UI {
 
     public UI() {
         scanner = new Scanner(System.in);
-        uiFacade = new UiFacade();
     }
 
     public void run() {

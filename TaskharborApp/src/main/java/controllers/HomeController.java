@@ -38,7 +38,7 @@ public class HomeController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        imageView.fitWidthProperty().bind(Bindings.subtract(Library_pane.widthProperty(), 100.0));
-        imageView.fitHeightProperty().bind(Bindings.subtract(Library_pane.heightProperty(), 100.0));
+        imageView.fitWidthProperty().bind(Bindings.subtract(Library_pane.widthProperty(), 50.0));
+        imageView.fitHeightProperty().bind(Bindings.subtract(Library_pane.heightProperty(), 50.0));
     }
 }
