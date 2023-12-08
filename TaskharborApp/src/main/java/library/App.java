@@ -24,7 +24,6 @@ public class App extends Application {
         Parent dummyRoot = new Pane();
         scene = new Scene(dummyRoot, 800, 500);
 
-        // Set the initial FXML to home
         setRoot("home");
 
         stage.setScene(scene);
@@ -50,7 +49,7 @@ public class App extends Application {
             System.out.println("Navigation History: " + navigationHistory);
         }
     }
-
+    
     public static void navigateBack() throws IOException {
         // Check if there is a previous FXML
         if (navigationHistory.size() > 1) {

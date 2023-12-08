@@ -22,27 +22,20 @@
     <VBox VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
         <TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10">
             
-            <!-- Header Section -->
             <VBox styleClass="header">
                 <Button onAction="#addProject" text="Add Project"/>
             </VBox>
 
-            <!-- Project Tiles -->
             <TitledPane fx:id="projectTile" animated="false" stylesheets="@styles.css" text="Project 1" textFill="WHITE">
                 <content>
-                    <!-- You may customize the content of the TitledPane as needed -->
                 </content>
             </TitledPane>
 
         </TilePane>
     </VBox>
-
-    <!-- Footer Section -->
     <VBox styleClass="footer">
         <Button onAction="#goBack" styleClass="back-button" text="Back"/>
     </VBox>
-
-    <!-- Stylesheet -->
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>

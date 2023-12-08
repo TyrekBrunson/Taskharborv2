@@ -15,11 +15,9 @@
         <PasswordField fx:id="passwordField" layoutX="50" layoutY="140" promptText="Password" />
         <Button layoutX="50" layoutY="180" onAction="#onSignupClicked" text="Signup" styleClass="button" />
         <Text fx:id="signupMessage" layoutX="50" layoutY="220" />
-
-        <!-- New back button -->
         <Button layoutX="50" layoutY="260" onAction="#goBack" text="Back" styleClass="back-button" />
     </children>
     <stylesheets>
-        <URL value="@./styles.css" />
+        <URL value="@styles.css" />
     </stylesheets>
 </AnchorPane>
