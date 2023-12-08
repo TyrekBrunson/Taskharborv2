@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import java.net.*?>
 
-<TilePane fx:controller="controllers.ProjectController" xmlns:fx="http://javafx.com/fxml/1"
+<TilePane fx:id="projectsPage" fx:controller="controllers.ProjectController" xmlns:fx="http://javafx.com/fxml/1"
           prefTileWidth="200" prefTileHeight="150" hgap="10" vgap="10">
     <children>
         <Label text="Projects" />

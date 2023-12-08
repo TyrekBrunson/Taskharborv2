@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.net.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="signupPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
+<AnchorPane fx:id="signupPage" id="AnchorPane" prefHeight="400" prefWidth="600" fx:id="signupPane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
         <TextField fx:id="firstNameField" layoutX="50" layoutY="50" promptText="First Name" />
         <TextField fx:id="lastNameField" layoutX="50" layoutY="80" promptText="Last Name" />

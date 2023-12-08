@@ -76,7 +76,7 @@ public class ProjectController {
             String lastLoadedFXML = App.getLastLoadedFXML();
 
             // Check if there is a previous FXML
-            if (lastLoadedFXML != null) {
+            if (lastLoadedFXML != null && !lastLoadedFXML.equals("Projects")) {
                 // Print for debugging purposes
                 System.out.println("Going back to: " + lastLoadedFXML);
 
@@ -86,6 +86,17 @@ public class ProjectController {
                 // Print for debugging purposes
                 System.out.println("No previous FXML found");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void logOut(ActionEvent event) {
+        try {
+            // Navigate to the login screen
+            App.setRoot("login");
         } catch (IOException e) {
             e.printStackTrace();
         }
