@@ -8,18 +8,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21.0.1" fx:controller="controllers.ProjectController">
+<TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjectController">
     <children>
         <Label text="Projects" />
         <Button onAction="#addProject" text="Add Project" />
         <Button onAction="#goBack" styleClass="back-button" text="Back" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-      <TitledPane animated="false" text="Project 1" textAlignment="CENTER">
+      <TitledPane animated="false" stylesheets="@styles.css" text="Project 1" textAlignment="CENTER" textFill="#f7f7f748">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <stylesheets>
-                  <URL value="@styles.css" />
-                  <URL value="@styles.css" />
-               </stylesheets>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@styles.css">
+               <children>
+                  <Label layoutX="-3.0" layoutY="-4.0" prefHeight="134.0" prefWidth="210.0" text="Using Lorem ipsum to focus attention on graphic elements in a webpage design proposal · One of the earliest examples of the Lorem ipsum placeholder text on 1960s advertising · In publishing and graphic design, Lorem ipsum (/ˌlɔː.rəm ˈɪp.səm/) is a placeholder text commonly used to" />
+               </children>
             </AnchorPane>
         </content>
       </TitledPane>
