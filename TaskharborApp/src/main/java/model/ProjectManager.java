@@ -74,7 +74,7 @@ public class ProjectManager {
         if (index >= 0 && index < projects.size()) {
             return projects.get(index);
         }
-        return null; // or handle the case when the index is out of bounds
+        return null; 
     }
     
     
@@ -94,6 +94,16 @@ public class ProjectManager {
                 Column column = project.getColumns().get(columIndex);
                 comments comment = new comments(user, commentText);
                 column.addComment(comment);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean editProject(Project project) {
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).equals(project)) {
+                projects.set(i, project);
                 return true;
             }
         }

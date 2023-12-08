@@ -1,25 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.event.ActionEvent?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import java.net.*?>
+<?import javafx.scene.control.MenuItem?>
 
-<TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjectController">
-    <children>
-        <Label text="Projects" />
-        <Button onAction="#addProject" text="Add Project" />
-        <Button onAction="#goBack" styleClass="back-button" text="Back" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-      <TitledPane animated="false" stylesheets="@styles.css" text="Project 1" textFill="WHITE">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@styles.css" />
-        </content>
-      </TitledPane>
-    </children>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ProjectController" alignment="TOP_CENTER" spacing="10" fillWidth="true">
+
+    <MenuBar>
+        <Menu text="File">
+            <MenuItem text="Exit"/>
+        </Menu>
+    </MenuBar>
+
+    <VBox VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
+        <TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10">
+            
+            <!-- Header Section -->
+            <VBox styleClass="header">
+                <Button onAction="#addProject" text="Add Project"/>
+            </VBox>
+
+            <!-- Project Tiles -->
+            <TitledPane fx:id="projectTile" animated="false" stylesheets="@styles.css" text="Project 1" textFill="WHITE">
+                <content>
+                    <!-- You may customize the content of the TitledPane as needed -->
+                </content>
+            </TitledPane>
+
+        </TilePane>
+    </VBox>
+
+    <!-- Footer Section -->
+    <VBox styleClass="footer">
+        <Button onAction="#goBack" styleClass="back-button" text="Back"/>
+    </VBox>
+
+    <!-- Stylesheet -->
     <stylesheets>
-        <URL value="@./styles.css" />
+        <URL value="@styles.css"/>
     </stylesheets>
-</TilePane>
+</VBox>

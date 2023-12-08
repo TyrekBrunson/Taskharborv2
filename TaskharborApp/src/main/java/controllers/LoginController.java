@@ -23,7 +23,18 @@ public class LoginController {
     @FXML
     private void onLoginClicked(ActionEvent event) throws IOException {
         try {
+            // Add login logic here
+            // For now, just navigate to the "Projects" view
             App.setRoot("Projects");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) {
+        try {
+            App.setRoot("Home");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 <?import java.net.*?>
 
-<AnchorPane fx:id="signup" id="AnchorPane" prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
         <TextField fx:id="firstNameField" layoutX="50" layoutY="50" promptText="First Name" />
         <TextField fx:id="lastNameField" layoutX="50" layoutY="80" promptText="Last Name" />
@@ -15,6 +15,9 @@
         <PasswordField fx:id="passwordField" layoutX="50" layoutY="140" promptText="Password" />
         <Button layoutX="50" layoutY="180" onAction="#onSignupClicked" text="Signup" styleClass="button" />
         <Text fx:id="signupMessage" layoutX="50" layoutY="220" />
+
+        <!-- New back button -->
+        <Button layoutX="50" layoutY="260" onAction="#goBack" text="Back" styleClass="button" />
     </children>
     <stylesheets>
         <URL value="@./styles.css" />

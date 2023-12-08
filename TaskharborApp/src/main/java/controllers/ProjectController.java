@@ -1,89 +1,151 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.TilePane;
+import library.App;
+import model.Project;
+import model.UiFacade;
 
 import java.io.IOException;
-import java.util.*;
-import library.App;
-import model.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class ProjectController {
 
     @FXML
-    private TilePane tilePane;
+    private TilePane projectsPage;
 
     @FXML
-    private Label projectLabel;
+    private ListView<Project> projectListView;
 
     @FXML
-    private Button switchToLoginButton;
+    private Button addButton;
 
     @FXML
-    private Button backButton;
+    private Button editButton;
+
+    @FXML
+    private Button removeButton;
 
     @FXML
     private void initialize() {
-        // Set up any initializations if needed
+        System.out.println("Initializing ProjectController...");
+
+        try {
+            // Ensure that the projectListView is not null
+            if (projectListView == null) {
+                throw new IllegalStateException("projectListView is null. Check FXML file.");
+            }
+
+            populateProjects();
+            configureListView();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     private void addProject() {
-        // Handle the button click to add a new project
-        UiFacade.getInstance().addProject(null, null, null);
+        UiFacade.getInstance().addProject("New Project", null, null);
+        populateProjects();
+    }
+
+    @FXML
+    private void editProject(ActionEvent event) {
+        Project selectedProject = projectListView.getSelectionModel().getSelectedItem();
+        if (selectedProject != null) {
+            UiFacade.getInstance().editProject(selectedProject);
+            populateProjects();
+        } else {
+            showAlert("Edit Project", "No project selected for editing.");
+        }
+    }
+
+    @FXML
+    private void removeProject(ActionEvent event) {
+        Project selectedProject = projectListView.getSelectionModel().getSelectedItem();
+        if (selectedProject != null && showConfirmationDialog("Confirm Deletion", "Are you sure you want to delete this project?")) {
+            UiFacade.getInstance().removeProject(selectedProject);
+            populateProjects();
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean showConfirmationDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
     @FXML
     private void populateProjects() {
-        // Clear existing content
-        tilePane.getChildren().clear();
+        System.out.println("Populating projects...");
 
-        // Retrieve project information from the model
-        List<Project> projects = UiFacade.getInstance().getProjects();
+        try {
+            if (projectsPage == null) {
+                throw new IllegalStateException("projectsPage is null. Check FXML file.");
+            }
 
-        // Iterate through projects and create a box for each
-        for (Project project : projects) {
-            VBox projectBox = createProjectBox(project);
-            tilePane.getChildren().add(projectBox);
+            projectsPage.getChildren().clear();
+
+            List<Project> projects = UiFacade.getInstance().getProjects();
+            projects = (projects != null) ? projects : Collections.emptyList();
+
+            for (Project project : projects) {
+                TitledPane projectTile = createProjectTile(project);
+                projectsPage.getChildren().add(projectTile);
+            }
+
+            ObservableList<Project> observableProjects = FXCollections.observableArrayList(projects);
+            projectListView.setItems(observableProjects);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private VBox createProjectBox(Project project) {
-        // Implement the creation of VBox for a project here
-        // You can set labels, buttons, or any other UI elements based on your project object
-        VBox box = new VBox();
+    private void configureListView() {
+        projectListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        projectListView.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                super.updateItem(project, empty);
+                setText(empty || project == null ? null : project.getProjectName());
+            }
+        });
+    }
 
-        Label projectNameLabel = new Label(project.getProjectName());
-        Button editButton = new Button("Edit");
-        // Set appropriate actions, styles, and other properties for UI elements
-
-        // Add UI elements to the VBox
-        box.getChildren().addAll(projectNameLabel, editButton);
-
-        // Set styles or CSS classes for the VBox if needed
-        box.getStyleClass().add("project-box"); // Example CSS class
-
-        return box;
+    @FXML
+    private TitledPane createProjectTile(Project project) {
+        TitledPane titledPane = new TitledPane();
+        titledPane.setText(project.getProjectName());
+        titledPane.getStyleClass().add("project-tile");
+        return titledPane;
     }
 
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            // Get the last loaded FXML from the App class
             String lastLoadedFXML = App.getLastLoadedFXML();
-
-            // Check if there is a previous FXML
             if (lastLoadedFXML != null && !lastLoadedFXML.equals("Projects")) {
-                // Print for debugging purposes
                 System.out.println("Going back to: " + lastLoadedFXML);
-
-                // Update lastLoadedFXML before navigating back
                 App.setRoot(lastLoadedFXML);
             } else {
-                // Print for debugging purposes
                 System.out.println("No previous FXML found");
             }
         } catch (IOException e) {
@@ -91,18 +153,12 @@ public class ProjectController {
         }
     }
 
-
     @FXML
     private void logOut(ActionEvent event) {
         try {
-            // Navigate to the login screen
             App.setRoot("login");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    
-
-
 }

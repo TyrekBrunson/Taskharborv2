@@ -71,6 +71,23 @@ public class UiFacade {
         return false;
     }
 
+    public boolean editProject(Project project) {
+        if (currentUser != null) {
+            ProjectManager projectManager = currentUser.getProjectManager();
+            return projectManager.editProject(project);
+        }
+        return false;
+    }
+
+   public boolean removeProject(Project project) {
+        if (currentUser != null) {
+            ProjectManager projectManager = currentUser.getProjectManager();
+            projectManager.removeProject(project);
+            return true;
+        }
+        return false;
+    }
+
     public boolean removeProject(int projectIndex) {
         if (currentUser != null) {
             ProjectManager projectManager = currentUser.getProjectManager();

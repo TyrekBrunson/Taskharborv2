@@ -1,5 +1,8 @@
+/* styles.css */
+
 .root {
-    -fx-background-color: #F5C278;
+    -fx-background-color: #F5C278; 
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #centeredContainer {
@@ -17,14 +20,86 @@
 }
 
 .button {
-    -fx-background-color: #3E82F4;
+    -fx-background-color: #3498db; /* Button color */
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition-duration: 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Darker color on hover */
+    -fx-effect: dropshadow(three-pass-box, #3498db, 10, 0, 0, 0);
 }
 
 .titled-pane > .title {
-    -fx-background-color: #35494E;
+    -fx-background-color: #2c3e50; /* Darker background color for titled pane title */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 
 .titled-pane > .content {
-    -fx-background-color: #A6DFDE;
+    -fx-background-color: #ecf0f1; /* Light background color for titled pane content */
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+}
+
+/* Additional styles for project page */
+.tile-pane {
+    -fx-padding: 20px;
+}
+
+.project-box {
+    -fx-background-color: #ffffff; /* White background color */
+    -fx-border-radius: 5px;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-transition-duration: 0.3s;
+}
+
+.project-box:hover {
+    -fx-effect: dropshadow(three-pass-box, #aaaaaa, 10, 0, 0, 0);
+}
+
+.project-name-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50; /* Dark text color */
+}
+
+.back-button {
+    -fx-background-color: #e74c3c; 
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition-duration: 0.3s;
+}
+
+.back-button:hover {
+    -fx-background-color: #c0392b; /* Darker red on hover */
+    -fx-effect: dropshadow(three-pass-box, #c0392b, 10, 0, 0, 0);
+}
+
+.add-project-button,
+.edit-project-button,
+.remove-project-button {
+    -fx-background-color: #27ae60; /* Green color for add project */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition-duration: 0.3s;
+}
+
+.add-project-button:hover,
+.edit-project-button:hover,
+.remove-project-button:hover {
+    -fx-background-color: #219653; /* Darker green on hover */
+    -fx-effect: dropshadow(three-pass-box, #27ae60, 10, 0, 0, 0);
 }
