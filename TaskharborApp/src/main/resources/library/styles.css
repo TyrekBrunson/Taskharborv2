@@ -20,3 +20,11 @@
     -fx-background-color: #3E82F4;
     -fx-text-fill: white;
 }
+
+.titled-pane > .title {
+    -fx-background-color: #35494E;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #A6DFDE;
+}
