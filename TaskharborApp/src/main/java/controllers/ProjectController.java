@@ -1,16 +1,15 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 import library.App;
-import model.Project;
-import model.UiFacade;
+import model.*;
 
 public class ProjectController {
 
@@ -71,14 +70,28 @@ public class ProjectController {
     }
 
     @FXML
-    private void goBack() {
-        String previousFXML = App.getLastLoadedFXML();
-        if (previousFXML != null) {
-            try {
-                App.setRoot(previousFXML);
-            } catch (IOException e) {
-                e.printStackTrace();  // Handle the exception according to your needs
+    private void goBack(ActionEvent event) {
+        try {
+            // Get the last loaded FXML from the App class
+            String lastLoadedFXML = App.getLastLoadedFXML();
+
+            // Check if there is a previous FXML
+            if (lastLoadedFXML != null) {
+                // Print for debugging purposes
+                System.out.println("Going back to: " + lastLoadedFXML);
+
+                // Update lastLoadedFXML before navigating back
+                App.setRoot(lastLoadedFXML);
+            } else {
+                // Print for debugging purposes
+                System.out.println("No previous FXML found");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    
+
+
 }

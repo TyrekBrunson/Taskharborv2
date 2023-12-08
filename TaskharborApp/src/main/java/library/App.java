@@ -37,6 +37,7 @@ public class App extends Application {
     
 
     public static void setRoot(String fxml) throws IOException {
+        System.out.println("Setting root to: " + fxml);
         lastLoadedFXML = fxml;
         scene.setRoot(loadFXML(fxml));
     }
