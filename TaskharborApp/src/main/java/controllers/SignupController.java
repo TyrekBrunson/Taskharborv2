@@ -28,6 +28,11 @@ public class SignupController {
 
     @FXML
     private void onSignupClicked(ActionEvent event) throws IOException {
-        App.setRoot("Projects");;
+        try{
+            App.setRoot("Projects");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 }
