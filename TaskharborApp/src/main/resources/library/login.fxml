@@ -15,7 +15,7 @@
         <Text fx:id="loginMessage" layoutX="50" layoutY="150" />
 
         <!-- New back button -->
-        <Button layoutX="50" layoutY="190" onAction="#goBack" text="Back" styleClass="button" />
+        <Button layoutX="50" layoutY="190" onAction="#goBack" text="Back" styleClass="back-button" />
     </children>
     <stylesheets>
         <URL value="@./styles.css" />
