@@ -61,11 +61,9 @@ public class DataWriter {
         }
     }
 
-    public static void saveProjects(ProjectManager projectManager) {
-        ArrayList<Project> projects = projectManager.getAllProjects();
+    public static void saveProjects(ArrayList<Project> projects) {
         JSONArray jsonProjects = new JSONArray();
 
-        // Creating all the JSON objects
         for (Project project : projects) {
             jsonProjects.add(getProjectJSON(project));
         }
@@ -80,11 +78,19 @@ public class DataWriter {
 
     public static JSONObject getProjectJSON(Project project) {
         JSONObject projectDetails = new JSONObject();
-        projectDetails.put("id", project.getProjectId());
         projectDetails.put("projectName", project.getProjectName());
-        // Add any other properties of the Project class that you want to save here.
+        projectDetails.put("projectDate", project.getProjectDate());
+    
+        JSONArray columnsArray = new JSONArray();
+        for (Column column : project.getColumns()) {
+            columnsArray.add(getColumnJSON(column));
+        }
+        projectDetails.put("columns", columnsArray);
+    
+    
         return projectDetails;
     }
+    
 
     public static JSONObject getColumnJSON(Column column) {
         JSONObject columnDetails = new JSONObject();

@@ -5,46 +5,44 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DataReader {
 
-    public static ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() throws org.json.simple.parser.ParseException, ParseException {
         ArrayList<User> userList = new ArrayList<>();
-    
+
         try {
             File usersFile = new File("TaskharborApp/src/main/java/model/json/users.json");
             if (!usersFile.exists()) {
                 System.err.println("Error: Users file not found at path: " + usersFile.getAbsolutePath());
                 return userList;
             }
-    
-            FileReader reader = new FileReader(usersFile);
-            JSONParser parser = new JSONParser();
-            JSONArray userListJSON = (JSONArray) parser.parse(reader);
-    
-            for (int i = 0; i < userListJSON.size(); i++) {
-                JSONObject userJSON = (JSONObject) userListJSON.get(i);
-                // Parse userJSON and create User object
-                User user = new User(
-                    UUID.fromString((String) userJSON.get("id")),
-                    (String) userJSON.get("firstName"),
-                    (String) userJSON.get("lastName"),
-                    (String) userJSON.get("userName"),
-                    (String) userJSON.get("password"),
-                    Role.valueOf((String) userJSON.get("userRole"))
-                );
-                userList.add(user);
+
+            try (FileReader reader = new FileReader(usersFile)) {
+                JSONParser parser = new JSONParser();
+                JSONArray userListJSON = (JSONArray) parser.parse(reader);
+
+                for (Object userObj : userListJSON) {
+                    if (userObj instanceof JSONObject) {
+                        JSONObject userJSON = (JSONObject) userObj;
+                        User user = createUserFromJSON(userJSON);
+                        userList.add(user);
+                    }
+                }
             }
-            return userList;
-    
-        } catch (Exception e) {
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: File not found - " + e.getMessage());
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    
+
         return userList;
     }
     
@@ -114,8 +112,19 @@ public class DataReader {
         return taskList;
     }
 
+    private static User createUserFromJSON(JSONObject userJSON) {
+        String firstName = (String) userJSON.get("firstName");
+        String lastName = (String) userJSON.get("lastName");
+        String userName = (String) userJSON.get("userName");
+        String password = (String) userJSON.get("password");
+        String userRoleString = (String) userJSON.get("userRole");
+
+        Role userRole = Role.valueOf(userRoleString); 
+
+        return new User(null, firstName, lastName, userName, password, userRole);
+    }
+
     private static Project deserializeProject(JSONObject projectJSON) {
-        // Extract project properties from JSON
         String projectName = (String) projectJSON.get("projectName");
         String projectDateString = (String) projectJSON.get("projectDate");
         Date projectDate = parseDate(projectDateString);

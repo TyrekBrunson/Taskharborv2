@@ -2,12 +2,18 @@ package model;
 
 import java.util.*;
 
+import org.json.simple.parser.ParseException;
+
 public class UserManagement {
     private static UserManagement userManager;
     private ArrayList<User> usersList;
 
     private UserManagement() {
-        this.usersList = DataReader.getUsers();
+        try {
+            this.usersList = DataReader.getUsers();
+        } catch (ParseException | java.text.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public static synchronized UserManagement getInstance() {

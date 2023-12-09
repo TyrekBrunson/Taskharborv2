@@ -35,6 +35,10 @@ public class ProjectManager {
     public void removeProject(Project project) {
         projects.remove(project);
     }
+    
+    public void removeColumn(Column column) {
+        columnsList.remove(column);
+    }
 
     public boolean editProjectName(Project project, String newProjectName) {
         if (project != null) {
@@ -74,7 +78,7 @@ public class ProjectManager {
     }
 
     public void saveProjects() {
-        DataWriter.saveProjects(this);
+        DataWriter.saveProjects(projects);
     }
 
     public ArrayList<Column> getColumns() {

@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-
 public class Project {
     private String projectName;
     private Date projectDate;
@@ -15,13 +12,12 @@ public class Project {
     private boolean completed;
 
     public Project(String projectName, Date projectDate, ArrayList<Column> columns) {
-    this.projectName = projectName;
-    this.projectDate = projectDate;
-    this.columns = (columns != null) ? columns : new ArrayList<>();
-    this.projectId = UUID.randomUUID();
-    this.completed = false;
+        this.projectName = projectName;
+        this.projectDate = projectDate;
+        this.columns = (columns != null) ? columns : new ArrayList<>();
+        this.projectId = UUID.randomUUID();
+        this.completed = false;
     }
-
 
     public Date getProjectDate() {
         return projectDate;
@@ -55,17 +51,13 @@ public class Project {
         columns.add(column);
     }
 
-    public void displayProjectDetails() {
-        System.out.println("Project Name: " + projectName);
-        System.out.println("Columns:");
+    public String getProjectSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("Project Name: ").append(projectName).append("\n");
+        summary.append("Columns:\n");
         for (Column column : columns) {
-            displayColumnDetails(column);
+            summary.append(column.toString()).append("\n");
         }
+        return summary.toString();
     }
-
-    private void displayColumnDetails(Column column) {
-        System.out.println(column.toString());
-    }
-
-
 }
