@@ -53,7 +53,7 @@ public class DataReader {
         ArrayList<Project> projectList = new ArrayList<>();
     
         try {
-            File projectFile = new File("TaskharborApp/src/main/java/model/json/projects.json");
+            File projectFile = new File("TaskharborApp/src/main/java/model/json/project.json");
             if (!projectFile.exists()) {
                 System.err.println("Error: Project file not found at path: " + projectFile.getAbsolutePath());
                 return projectList;  

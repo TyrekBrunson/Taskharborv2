@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import library.App;
+import model.UiFacade;
 
 public class SignupController {
 
@@ -27,15 +29,31 @@ public class SignupController {
     private Text signupMessage;
 
     @FXML
-    private void onSignupClicked(ActionEvent event) throws IOException {
+    private VBox centeredContainer;
+
+    @FXML
+    private void onSignupClicked(ActionEvent event) {
         try {
-            // Add signup logic here
-            // For now, just navigate to the "Projects" view
-            App.setRoot("Projects");
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            if (!firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
+                if (UiFacade.getInstance().createAccount(firstName, lastName, username, password)) {
+                    // User created successfully, navigate to the "Projects" view
+                    App.setRoot("Projects");
+                } else {
+                    signupMessage.setText("Failed to create account. Please try again.");
+                }
+            } else {
+                signupMessage.setText("Please fill in all the fields.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void onLoginClicked(ActionEvent event) {
@@ -54,4 +72,17 @@ public class SignupController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void initialize() {
+        System.out.println("Initializing SignupController...");
+
+        try {
+            // Add this line to apply styles directly to the VBox
+            centeredContainer.getStyleClass().add("login-pane");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -29,7 +29,7 @@
         </TilePane>
     </VBox>
     <VBox styleClass="footer">
-        <Button onAction="#goBack" styleClass="back-button" text="Back"/>
+        <Button onAction="#goBack" styleClass="back-button" text="Logout"/>
     </VBox>
     <stylesheets>
         <URL value="@styles.css"/>
