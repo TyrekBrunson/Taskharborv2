@@ -16,7 +16,7 @@ public class DataReader {
         ArrayList<User> userList = new ArrayList<>();
 
         try {
-            File usersFile = new File("json/users.json");
+            File usersFile = new File("TaskharborApp/src/main/java/model/json/users.json");
             if (!usersFile.exists()) {
                 System.err.println("Error: Users file not found at path: " + usersFile.getAbsolutePath());
                 return userList;  // Return an empty list or handle the error accordingly
@@ -43,7 +43,7 @@ public class DataReader {
         ArrayList<Project> projectList = new ArrayList<>();
 
         try {
-            File projectFile = new File("json/project.json");
+            File projectFile = new File("TaskharborApp/src/main/java/model/json/project.json");
             if (!projectFile.exists()) {
                 System.err.println("Error: Project file not found at path: " + projectFile.getAbsolutePath());
                 return projectList;  // Return an empty list or handle the error accordingly
