@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 
 public class UserManagement {
@@ -9,22 +10,22 @@ public class UserManagement {
         this.usersList = DataReader.getUsers();
     }
 
-    public static UserManagement getInstance() {
-        if(userManager == null){
+    public static synchronized UserManagement getInstance() {
+        if (userManager == null) {
             userManager = new UserManagement();
         }
         return userManager;
     }
 
     public boolean addUser(String firstName, String lastName, String userName, String password) {
-        User user = new User( firstName, lastName, userName, password);
+        User user = new User(firstName, lastName, userName, password);
         usersList.add(user);
         return true;
     }
 
     public boolean removeUser(String userName, String password) {
-        for (User user: usersList){
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password)){
+        for (User user : usersList) {
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                 usersList.remove(user);
                 return true;
             }
@@ -33,9 +34,8 @@ public class UserManagement {
     }
 
     public User getUser(String userName, String password) {
-        //loop through user find the user with the give name and password and return it
-        for (User user: usersList){
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password)){
+        for (User user : usersList) {
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                 return user;
             }
         }
@@ -47,25 +47,29 @@ public class UserManagement {
     }
 
     public boolean hasUser(String userName, String password) {
-        for (User user : usersList){
-            if(user.getUserName().equals(userName) && user.getPassword().equals(password)){
+        for (User user : usersList) {
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean editUserPassword(String userName, String password) {
+    public void setUserList(ArrayList<User> userList) {
+        this.usersList = userList;
+    }
+
+    public boolean editUserPassword(String userName, String newPassword) {
         for (User user : usersList) {
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password)){
-                user.updatePassword(password);
+            if (user.getUserName().equals(userName)) {
+                user.updatePassword(newPassword);
+                return true;
             }
         }
         return false;
     }
 
-    public void saveUsers() {
-        DataWriter.saveUsers();
+    public synchronized void saveUsers() {
+        DataWriter.saveUsers(this);
     }
-
 }

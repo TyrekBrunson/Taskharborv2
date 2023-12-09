@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import library.App;
+import model.UiFacade;
 
 public class LoginController {
 
@@ -21,13 +22,19 @@ public class LoginController {
     private Text loginMessage;
 
     @FXML
-    private void onLoginClicked(ActionEvent event) throws IOException {
-        try {
-            // Add login logic here
-            // For now, just navigate to the "Projects" view
-            App.setRoot("Projects");
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void onLoginClicked(ActionEvent event) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean isValidUser = UiFacade.getInstance().login(username, password);
+
+        if (isValidUser) {
+            try {
+                App.setRoot("Projects");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Invalid login credentials!");
         }
     }
 

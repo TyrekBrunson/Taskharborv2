@@ -33,7 +33,8 @@ public class test {
     }
 
     public void scenario3(){
-        DataWriter.saveUsers();
+        UserManagement userManagement = UserManagement.getInstance();
+        DataWriter.saveUsers(userManagement);
     }
 
     public static void main(String[] args) {

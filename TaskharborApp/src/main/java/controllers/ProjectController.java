@@ -53,7 +53,7 @@ public class ProjectController {
     @FXML
     private void addProject() {
         UiFacade.getInstance().addProject("New Project", null, null);
-        populateProjects();
+        populateProjects(); 
     }
 
     @FXML

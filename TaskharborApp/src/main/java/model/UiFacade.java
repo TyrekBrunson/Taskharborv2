@@ -1,49 +1,77 @@
 package model;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class UiFacade {
     private User currentUser;
     private static UiFacade facade;
+    private UserManagement userManagement;
+    private ProjectManager projectManager;
 
-     public static UiFacade getInstance() {
-        if(facade == null){
+    public static UiFacade getInstance() {
+        if (facade == null) {
             facade = new UiFacade();
         }
         return facade;
     }
 
     private UiFacade() {
-        
+        userManagement = UserManagement.getInstance();
+        projectManager = ProjectManager.getInstance();
+
+        loadUserData();
+        loadProjectData();
+    }
+
+    private void loadUserData() {
+        ArrayList<User> users = DataReader.getUsers();
+        if (users != null) {
+            userManagement.setUserList(users);
+        }
+    }
+    
+
+    private void loadProjectData() {
+        // Load projects from the file using DataReader
+        ArrayList<Project> projects = DataReader.getProjects();
+        if (projects != null) {
+            projectManager.setProjects(projects);
+        }
     }
 
     public boolean createAccount(String firstName, String lastName, String userName, String password) {
-        // Check if the username already exists
-        UserManagement userManagement = UserManagement.getInstance();
-        if (userManagement.hasUser(userName, password)) {
+        try {
+            // Check if the username already exists
+            if (userManagement.hasUser(userName, password)) {
+                return false;
+            }
+            userManagement.addUser(firstName, lastName, userName, password);
+            DataWriter.saveUsers(userManagement);  
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace(); 
             return false;
         }
-
-        // Create a new user and add it to the user list
-        userManagement.addUser(firstName, lastName, userName, password);
-        return true;
     }
+    
 
-	public boolean login(String userName, String password) {
-		UserManagement userManagement = UserManagement.getInstance();
-	
-		if (userManagement.hasUser(userName, password)) {
-			currentUser = userManagement.getUser(userName, password);
-	
+    public boolean login(String userName, String password) {
+        try {
+            if (userManagement.hasUser(userName, password)) {
+                currentUser = userManagement.getUser(userName, password);
 
-			currentUser.setProjectManager(ProjectManager.getInstance());
-	
-			return true;
-		}
-	
-		return false;
-	}
-	
+                loadProjectData();
+
+                return true;
+            }
+
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public User getCurrentUser() {
         return currentUser;
@@ -51,11 +79,20 @@ public class UiFacade {
 
     public ArrayList<Project> getProjects() {
         if (currentUser != null) {
-            ProjectManager projectManager = currentUser.getProjectManager();
             return projectManager.getAllProjects();
         }
         return null;
     }
+
+    public void saveData() {
+        try {
+            DataWriter.saveUsers(userManagement);  
+            DataWriter.saveProjects(projectManager);
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }
+    
 
     public void logout() {
         currentUser = null;
@@ -79,7 +116,7 @@ public class UiFacade {
         return false;
     }
 
-   public boolean removeProject(Project project) {
+    public boolean removeProject(Project project) {
         if (currentUser != null) {
             ProjectManager projectManager = currentUser.getProjectManager();
             projectManager.removeProject(project);
@@ -205,6 +242,4 @@ public class UiFacade {
         }
         return false;
     }
-
-   
 }
