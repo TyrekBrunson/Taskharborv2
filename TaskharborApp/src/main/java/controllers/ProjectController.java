@@ -1,9 +1,11 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.TilePane;
 import library.App;
@@ -11,11 +13,13 @@ import model.Project;
 import model.UiFacade;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class ProjectController {
+public class ProjectController implements Initializable{
 
     @FXML
     private TilePane projectsPage;
@@ -32,31 +36,46 @@ public class ProjectController {
     @FXML
     private Button removeButton;
 
-    @FXML
-    private void initialize() {
-        System.out.println("Initializing ProjectController...");
 
-        try {
-            configureListView();
-            populateProjects();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (UiFacade.getInstance().getCurrentUser() == null) {
+            showAlert("Login Required", "Please log in to access the projects page.");
+            try {
+                App.setRoot("login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                configureListView();
+                populateProjects();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        
     }
 
     @FXML
-    private void addProject() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Add Project");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Enter project name:");
-    
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(projectName -> {
-            UiFacade.getInstance().addProject(projectName, null, null);
-            populateProjects();
-        });
-    }
+private void addProject(ActionEvent event) {
+    TextInputDialog dialog = new TextInputDialog();
+    dialog.setTitle("Add Project");
+    dialog.setHeaderText(null);
+    dialog.setContentText("Enter project name:");
+
+    Optional<String> result = dialog.showAndWait();
+    result.ifPresent(projectName -> {
+        // Invoke UiFacade to add a new project
+        if (UiFacade.getInstance().addProject(projectName, null, null)) {
+            populateProjects(); 
+        } else {
+            showAlert("Add Project", "Failed to add a new project.");
+        }
+    });
+}
+
     
 
     @FXML
@@ -92,26 +111,36 @@ public class ProjectController {
         }
     }
 
-    // ... (Other methods remain unchanged)
+
 
     private void populateProjects() {
         try {
+            if (projectsPage == null) {
+                System.err.println("TilePane (projectsPage) is null!");
+                return;
+            }
+    
             projectsPage.getChildren().clear();
-
+    
             List<Project> projects = UiFacade.getInstance().getProjects();
             projects = (projects != null) ? projects : Collections.emptyList();
-
+    
+            System.out.println("Number of projects retrieved: " + projects.size());
+    
             for (Project project : projects) {
                 TitledPane projectTile = createProjectTile(project);
                 projectsPage.getChildren().add(projectTile);
             }
-
+    
             ObservableList<Project> observableProjects = FXCollections.observableArrayList(projects);
             projectListView.setItems(observableProjects);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    
+    
 
     private void configureListView() {
         projectListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -119,10 +148,24 @@ public class ProjectController {
             @Override
             protected void updateItem(Project project, boolean empty) {
                 super.updateItem(project, empty);
-                setText(empty || project == null ? null : project.getProjectName());
+                if (empty || project == null) {
+                    setText(null);
+                } else {
+                    setText(project.getProjectName());
+                }
+            }
+        });
+    
+        // Add a listener to handle selection changes
+        projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Handle the selection change, e.g., update details or perform actions
+                System.out.println("Selected Project: " + newValue.getProjectName());
             }
         });
     }
+    
+    
 
     private TitledPane createProjectTile(Project project) {
         TitledPane titledPane = new TitledPane();
@@ -161,6 +204,11 @@ public class ProjectController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void exitApplication(ActionEvent event) {
+        Platform.exit();
     }
 
 }

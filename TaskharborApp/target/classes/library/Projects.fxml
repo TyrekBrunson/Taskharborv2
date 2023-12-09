@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.event.ActionEvent?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import java.net.*?>
-<?import javafx.scene.control.MenuItem?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.ProjectController" alignment="TOP_CENTER" spacing="10" fillWidth="true">
 
     <MenuBar>
         <Menu text="File">
-            <MenuItem text="Exit"/>
+            <MenuItem text="Exit" onAction="#exitApplication"/>
         </Menu>
     </MenuBar>
 
     <VBox VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
+        <!-- Add buttons to perform project-related actions -->
+        <HBox alignment="CENTER" spacing="10">
+            <Button onAction="#addProject" styleClass="add-project-button" text="Add Project"/>
+            <Button onAction="#editProject" styleClass="edit-project-button" text="Edit Project"/>
+            <Button onAction="#removeProject" styleClass="remove-project-button" text="Remove Project"/>
+        </HBox>
+
         <TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10">
-            <VBox styleClass="header">
-                <Button onAction="#addProject" text="Add Project"/>
-            </VBox>
-            <!-- Remove unnecessary TitledPane -->
+            <ListView fx:id="projectListView" prefHeight="200.0" prefWidth="200.0"/>
         </TilePane>
     </VBox>
+
     <VBox styleClass="footer">
         <Button onAction="#goBack" styleClass="back-button" text="Logout"/>
     </VBox>
+
     <stylesheets>
         <URL value="@styles.css"/>
     </stylesheets>

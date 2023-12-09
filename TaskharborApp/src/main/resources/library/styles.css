@@ -25,6 +25,11 @@
     -fx-fit-width: 100%;
 }
 
+#projectTilePane {
+    -fx-padding: 20px;
+}
+
+
 .button {
     -fx-background-color: #3498db; /* Button color */
     -fx-text-fill: white;

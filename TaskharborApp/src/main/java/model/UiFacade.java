@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class UiFacade {
     private User currentUser;
@@ -70,20 +72,25 @@ public class UiFacade {
             e.printStackTrace();
             return false;
         }
-    }
-    
-    
+    }    
     
 
     public User getCurrentUser() {
         return currentUser;
     }
 
-    public ArrayList<Project> getProjects() {
-        if (currentUser != null) {
-            return projectManager.getAllProjects();
+
+    public List<Project> getProjects() {
+        User currentUser = getCurrentUser();
+    
+        if (currentUser == null || currentUser.getProjectManager() == null) {
+            return Collections.emptyList();
         }
-        return null;
+    
+        ProjectManager projectManager = currentUser.getProjectManager();
+        List<Project> projects = projectManager.getAllProjects();
+        System.out.println("Number of projects: " + projects.size());
+        return projects;
     }
 
     public void saveData() {
