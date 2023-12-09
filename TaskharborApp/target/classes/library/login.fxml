@@ -9,11 +9,9 @@
     <children>
         <Button fx:id="backButton" text="Back" styleClass="back-button" onAction="#goBack" StackPane.alignment="TOP_LEFT" />
 
-        <!-- Center the login elements both horizontally and vertically -->
         <VBox spacing="10" alignment="CENTER">
             <Text text="Login" style="-fx-font-size: 20; -fx-font-weight: bold;" />
             
-            <!-- Center the user input boxes horizontally -->
             <HBox alignment="CENTER" spacing="10">
                 <GridPane hgap="10" vgap="5">
                     <Label text="Username:" />

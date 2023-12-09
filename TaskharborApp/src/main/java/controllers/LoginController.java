@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +17,7 @@ public class LoginController {
     private TextField usernameField;
 
     @FXML
-    private HBox loginPane; 
+    private HBox loginPane;
 
     @FXML
     private PasswordField passwordField;
@@ -46,13 +45,14 @@ public class LoginController {
             }
         } else {
             loginMessage.setText("Invalid login credentials!");
+            loginMessage.setVisible(true);
         }
     }
 
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            App.setRoot("Home");
+            App.navigateBack();
         } catch (IOException e) {
             e.printStackTrace();
         }
