@@ -5,13 +5,15 @@
 <?import javafx.scene.text.*?>
 <?import java.net.*?>
 
-<StackPane id="loginRoot" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
-    <children>
-        <Button fx:id="backButton" text="Back" styleClass="back-button" onAction="#goBack" StackPane.alignment="TOP_LEFT" />
+<BorderPane id="loginRoot" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+    <top>
+        <Button text="Back" styleClass="back-button" onAction="#goBack" />
+    </top>
 
+    <center>
         <VBox spacing="10" alignment="CENTER">
             <Text text="Login" style="-fx-font-size: 20; -fx-font-weight: bold;" />
-            
+
             <HBox alignment="CENTER" spacing="10">
                 <GridPane hgap="10" vgap="5">
                     <Label text="Username:" />
@@ -22,12 +24,13 @@
                     <PasswordField fx:id="passwordField" promptText="Enter your password" />
                 </GridPane>
             </HBox>
-            
+
             <Button fx:id="loginButton" text="Login" onAction="#onLoginClicked" styleClass="button" />
             <Text fx:id="loginMessage" fill="RED" text="Invalid username or password" visible="false" />
         </VBox>
-    </children>
+    </center>
+
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-</StackPane>
+</BorderPane>

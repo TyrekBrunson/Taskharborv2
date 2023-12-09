@@ -40,8 +40,9 @@ public class SignupController {
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            App.setRoot("Home");
-        } catch (IOException e) {
+            System.out.println("Going back...");
+            App.navigateBack();
+        }   catch (IOException e) {
             e.printStackTrace();
         }
     }

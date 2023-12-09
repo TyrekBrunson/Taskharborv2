@@ -52,9 +52,11 @@ public class LoginController {
     @FXML
     private void goBack(ActionEvent event) {
         try {
+            System.out.println("Going back...");
             App.navigateBack();
-        } catch (IOException e) {
+        }   catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
