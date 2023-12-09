@@ -102,13 +102,14 @@ public class UiFacade {
 
     public boolean addProject(String projectName, Date projectDate, ArrayList<Column> columns) {
         if (currentUser != null) {
-            ProjectManager projectManager = currentUser.getProjectManager();
+            ProjectManager projectManager = this.projectManager; 
             Project project = new Project(projectName, projectDate, columns);
             projectManager.addProject(project);
             return true;
         }
         return false;
     }
+    
 
     public boolean editProject(Project project) {
         if (currentUser != null) {
