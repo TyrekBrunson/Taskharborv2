@@ -63,10 +63,9 @@ public class LoginController {
 
     @FXML
     private void goBack(ActionEvent event) {
-        try {
-            System.out.println("Going back...");
-            App.navigateBack();
-        }   catch (IOException e) {
+         try {
+            App.setRoot("home");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
