@@ -37,35 +37,51 @@ public class ProjectController {
         System.out.println("Initializing ProjectController...");
 
         try {
-            // Ensure that the projectListView is not null
-            if (projectListView == null) {
-                throw new IllegalStateException("projectListView is null. Check FXML file.");
-            }
-
-            populateProjects();
             configureListView();
+            populateProjects();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     @FXML
     private void addProject() {
-        UiFacade.getInstance().addProject("New Project", null, null);
-        populateProjects(); 
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Add Project");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Enter project name:");
+    
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(projectName -> {
+            UiFacade.getInstance().addProject(projectName, null, null);
+            populateProjects();
+        });
     }
+    
 
     @FXML
     private void editProject(ActionEvent event) {
         Project selectedProject = projectListView.getSelectionModel().getSelectedItem();
         if (selectedProject != null) {
-            UiFacade.getInstance().editProject(selectedProject);
-            populateProjects();
+            TextInputDialog dialog = new TextInputDialog(selectedProject.getProjectName());
+            dialog.setTitle("Edit Project");
+            dialog.setHeaderText(null);
+            dialog.setContentText("Enter new project name:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(newProjectName -> {
+                if (UiFacade.getInstance().editProjectName(selectedProject, newProjectName)) {
+                    populateProjects();
+                } else {
+                    showAlert("Edit Project", "Failed to edit project name.");
+                }
+            });
         } else {
             showAlert("Edit Project", "No project selected for editing.");
         }
     }
+
+
 
     @FXML
     private void removeProject(ActionEvent event) {
@@ -76,32 +92,10 @@ public class ProjectController {
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+    // ... (Other methods remain unchanged)
 
-    private boolean showConfirmationDialog(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.isPresent() && result.get() == ButtonType.OK;
-    }
-
-    @FXML
     private void populateProjects() {
-        System.out.println("Populating projects...");
-
         try {
-            if (projectsPage == null) {
-                throw new IllegalStateException("projectsPage is null. Check FXML file.");
-            }
-
             projectsPage.getChildren().clear();
 
             List<Project> projects = UiFacade.getInstance().getProjects();
@@ -130,12 +124,28 @@ public class ProjectController {
         });
     }
 
-    @FXML
     private TitledPane createProjectTile(Project project) {
         TitledPane titledPane = new TitledPane();
         titledPane.setText(project.getProjectName());
         titledPane.getStyleClass().add("project-tile");
         return titledPane;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean showConfirmationDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
     @FXML
@@ -153,12 +163,4 @@ public class ProjectController {
         }
     }
 
-    @FXML
-    private void logOut(ActionEvent event) {
-        try {
-            App.setRoot("login");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

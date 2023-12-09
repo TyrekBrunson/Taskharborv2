@@ -33,7 +33,6 @@ public class UiFacade {
     
 
     private void loadProjectData() {
-        // Load projects from the file using DataReader
         ArrayList<Project> projects = DataReader.getProjects();
         if (projects != null) {
             projectManager.setProjects(projects);
@@ -203,6 +202,14 @@ public class UiFacade {
                     }
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean editProjectName(Project project, String newProjectName) {
+        if (currentUser != null) {
+            ProjectManager projectManager = currentUser.getProjectManager();
+            return projectManager.editProjectName(project, newProjectName);
         }
         return false;
     }

@@ -5,14 +5,11 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-/**
- * The ProjectManager class is responsible for managing project information.
- */
 public class ProjectManager {
     private static ProjectManager projectManager;
-    private ArrayList<Project> projects = new ArrayList<>();
-    private ArrayList<Column> columnsList = new ArrayList<>();
-    private String user; // Assuming user should be associated with a project
+    private ArrayList<Project> projects;
+    private ArrayList<Column> columnsList;
+    private String user;
     private comments Comments;
 
     public ProjectManager() {
@@ -20,11 +17,6 @@ public class ProjectManager {
         columnsList = DataReader.getColumns(projects);
     }
 
-    /**
-     * Gets the instance of the ProjectManager using the Singleton pattern.
-     *
-     * @return The ProjectManager instance.
-     */
     public static ProjectManager getInstance() {
         if (projectManager == null) {
             projectManager = new ProjectManager();
@@ -32,31 +24,24 @@ public class ProjectManager {
         return projectManager;
     }
 
-    /**
-     * Sets the list of projects for the ProjectManager.
-     *
-     * @param projects The list of projects to be set.
-     */
     public void setProjects(ArrayList<Project> projects) {
         this.projects = projects;
     }
 
-    /**
-     * Adds a new project to the appropriate list based on its completion status.
-     *
-     * @param project The project to be added.
-     */
     public void addProject(Project project) {
         projects.add(project);
     }
 
-    /**
-     * Removes a project from the appropriate list based on its completion status.
-     *
-     * @param project The project to be removed.
-     */
     public void removeProject(Project project) {
         projects.remove(project);
+    }
+
+    public boolean editProjectName(Project project, String newProjectName) {
+        if (project != null) {
+            project.setProjectName(newProjectName);
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Project> getAllProjects() {

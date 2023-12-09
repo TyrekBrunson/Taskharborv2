@@ -1,21 +1,27 @@
 package model;
+
 import java.util.ArrayList;
 
 public class Column {
     private String columnName;
     private int columnPosition;
-    private comments comments;
     private ArrayList<Task> columnTaskList;
     private ArrayList<comments> commentsList;
 
-    public Column(){
+    // Updated default constructor
+    public Column() {
         this.columnName = "Default Column Name";
         this.columnPosition = 0;
         this.columnTaskList = new ArrayList<>();
         this.commentsList = new ArrayList<>();
     }
 
-    public Column(String string, ArrayList arrayList) {
+    // Updated parameterized constructor
+    public Column(String columnName, int columnPosition) {
+        this.columnName = columnName;
+        this.columnPosition = columnPosition;
+        this.columnTaskList = new ArrayList<>();
+        this.commentsList = new ArrayList<>();
     }
 
     public String getColumnName() {
@@ -39,7 +45,7 @@ public class Column {
     }
 
     public void addComment(comments newComment) {
-        comments.add(newComment);
+        commentsList.add(newComment);
     }
 
     public int getPosition() {
@@ -53,7 +59,7 @@ public class Column {
                 "Column Task List: " + columnTaskList + "\n";
     }
 
-    public String getcommentsList() {
-        return null;
+    public ArrayList<comments> getCommentsList() {
+        return commentsList;
     }
 }

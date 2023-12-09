@@ -1,24 +1,27 @@
 package model;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 public class Project {
-    public Column Columns;
     private String projectName;
     private Date projectDate;
     private UUID projectId;
     private ArrayList<Column> columns;
-    private boolean completed; // New field to track completion status
+    private boolean completed;
 
-    // Constructor for the Project class
     public Project(String projectName, Date projectDate, ArrayList<Column> columns) {
-        this.projectName = projectName;
-        this.projectDate = projectDate;
-        this.columns = new ArrayList<>();
-        this.projectId = UUID.randomUUID();
-        this.completed = false; // A new project is not completed by default
+    this.projectName = projectName;
+    this.projectDate = projectDate;
+    this.columns = (columns != null) ? columns : new ArrayList<>();
+    this.projectId = UUID.randomUUID();
+    this.completed = false;
     }
+
 
     public Date getProjectDate() {
         return projectDate;
@@ -32,12 +35,15 @@ public class Project {
         return completed;
     }
 
-    // Method to mark the project as completed
     public void markCompleted() {
         completed = true;
     }
 
-    public Object getProjectId() {
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public UUID getProjectId() {
         return projectId;
     }
 
@@ -59,14 +65,7 @@ public class Project {
 
     private void displayColumnDetails(Column column) {
         System.out.println(column.toString());
-
     }
-
-    public comments getTaskByName(String string) {
-        return null;
-    }
-    
 
 
 }
- 

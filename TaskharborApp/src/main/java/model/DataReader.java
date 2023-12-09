@@ -51,27 +51,31 @@ public class DataReader {
 
     public static ArrayList<Project> getProjects() {
         ArrayList<Project> projectList = new ArrayList<>();
-
+    
         try {
-            File projectFile = new File("TaskharborApp/src/main/java/model/json/project.json");
+            File projectFile = new File("TaskharborApp/src/main/java/model/json/projects.json");
             if (!projectFile.exists()) {
                 System.err.println("Error: Project file not found at path: " + projectFile.getAbsolutePath());
                 return projectList;  
             }
-
+    
             FileReader reader = new FileReader(projectFile);
             JSONParser parser = new JSONParser();
             JSONArray projectListJSON = (JSONArray) parser.parse(reader);
-
+    
             for (int i = 0; i < projectListJSON.size(); i++) {
                 JSONObject projectJSON = (JSONObject) projectListJSON.get(i);
+    
+                Project project = deserializeProject(projectJSON);
+    
+                projectList.add(project);
             }
             return projectList;
-
+    
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    
         return projectList;  
     }
     
@@ -110,6 +114,16 @@ public class DataReader {
         return taskList;
     }
 
+    private static Project deserializeProject(JSONObject projectJSON) {
+        // Extract project properties from JSON
+        String projectName = (String) projectJSON.get("projectName");
+        String projectDateString = (String) projectJSON.get("projectDate");
+        Date projectDate = parseDate(projectDateString);
+    
+        return new Project(projectName, projectDate, null); 
+    }
+    
+
     private static Date parseDate(String dateString) {
         if (dateString == null)
             return null;
@@ -122,4 +136,6 @@ public class DataReader {
             return null;
         }
     }
+    
+    
 }

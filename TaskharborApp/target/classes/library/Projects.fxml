@@ -11,7 +11,8 @@
 <?import java.net.*?>
 <?import javafx.scene.control.MenuItem?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.ProjectController" alignment="TOP_CENTER" spacing="10" fillWidth="true">
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.ProjectController" alignment="TOP_CENTER" spacing="10" fillWidth="true">
 
     <MenuBar>
         <Menu text="File">
@@ -21,16 +22,10 @@
 
     <VBox VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
         <TilePane fx:id="projectsPage" hgap="10" prefTileHeight="150" prefTileWidth="200" vgap="10">
-            
             <VBox styleClass="header">
                 <Button onAction="#addProject" text="Add Project"/>
             </VBox>
-
-            <TitledPane fx:id="projectTile" animated="false" stylesheets="@styles.css" text="Project 1" textFill="WHITE">
-                <content>
-                </content>
-            </TitledPane>
-
+            <!-- Remove unnecessary TitledPane -->
         </TilePane>
     </VBox>
     <VBox styleClass="footer">
