@@ -16,6 +16,7 @@
         <Button layoutX="50" layoutY="180" onAction="#onSignupClicked" text="Signup" styleClass="button" />
         <Text fx:id="signupMessage" layoutX="50" layoutY="220" />
         <Button layoutX="50" layoutY="260" onAction="#goBack" text="Back" styleClass="back-button" />
+        <Button layoutX="50" layoutY="220" onAction="#onLoginClicked" text="Login" styleClass="button" />
     </children>
     <stylesheets>
         <URL value="@styles.css" />

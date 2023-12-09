@@ -24,8 +24,8 @@
                     <PasswordField fx:id="passwordField" promptText="Enter your password" />
                 </GridPane>
             </HBox>
-
             <Button fx:id="loginButton" text="Login" onAction="#onLoginClicked" styleClass="button" />
+            <Button fx:id="signupButton" text="Signup" onAction="#onSignupClicked" styleClass="button" />
             <Text fx:id="loginMessage" fill="RED" text="Invalid username or password" visible="false" />
         </VBox>
     </center>

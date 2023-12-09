@@ -38,6 +38,15 @@ public class SignupController {
     }
 
     @FXML
+    private void onLoginClicked(ActionEvent event) {
+        try {
+            App.setRoot("login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void goBack(ActionEvent event) {
         try {
             System.out.println("Going back...");

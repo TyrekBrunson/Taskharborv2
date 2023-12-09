@@ -27,6 +27,7 @@ public class HomeController implements Initializable{
             e.printStackTrace();
         }
     }
+    
     @FXML
     private void onSignupClicked(ActionEvent event) {
         try {
