@@ -14,29 +14,40 @@ public class DataReader {
 
     public static ArrayList<User> getUsers() {
         ArrayList<User> userList = new ArrayList<>();
-
+    
         try {
             File usersFile = new File("TaskharborApp/src/main/java/model/json/users.json");
             if (!usersFile.exists()) {
                 System.err.println("Error: Users file not found at path: " + usersFile.getAbsolutePath());
-                return userList;  
+                return userList;
             }
-
+    
             FileReader reader = new FileReader(usersFile);
             JSONParser parser = new JSONParser();
             JSONArray userListJSON = (JSONArray) parser.parse(reader);
-
+    
             for (int i = 0; i < userListJSON.size(); i++) {
                 JSONObject userJSON = (JSONObject) userListJSON.get(i);
+                // Parse userJSON and create User object
+                User user = new User(
+                    UUID.fromString((String) userJSON.get("id")),
+                    (String) userJSON.get("firstName"),
+                    (String) userJSON.get("lastName"),
+                    (String) userJSON.get("userName"),
+                    (String) userJSON.get("password"),
+                    Role.valueOf((String) userJSON.get("userRole"))
+                );
+                userList.add(user);
             }
             return userList;
-
+    
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return userList;  
+    
+        return userList;
     }
+    
 
     public static ArrayList<Project> getProjects() {
         ArrayList<Project> projectList = new ArrayList<>();

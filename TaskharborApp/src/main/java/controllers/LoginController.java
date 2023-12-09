@@ -35,8 +35,10 @@ public class LoginController {
     private void onLoginClicked(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        System.out.println("Username: " + username + ", Password: " + password);
+    
         boolean isValidUser = UiFacade.getInstance().login(username, password);
-
+    
         if (isValidUser) {
             try {
                 App.setRoot("Projects");
@@ -48,6 +50,7 @@ public class LoginController {
             loginMessage.setVisible(true);
         }
     }
+    
 
     @FXML
     private void onSignupClicked(ActionEvent event) {

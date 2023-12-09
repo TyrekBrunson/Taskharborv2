@@ -59,8 +59,8 @@ public class UiFacade {
     public boolean login(String userName, String password) {
         try {
             User user = userManagement.getUser(userName, password);
-            
-            if (user != null && user.getPassword().equals(password)) {
+    
+            if (user != null && user.checkPassword(password)) {
                 currentUser = user;
                 loadProjectData();
                 return true;
@@ -72,6 +72,7 @@ public class UiFacade {
             return false;
         }
     }
+    
     
     
 
