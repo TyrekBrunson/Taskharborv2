@@ -10,6 +10,13 @@
     -fx-spacing: 20; 
 }
 
+.login-pane {
+    -fx-background-color: #3498db;
+    -fx-padding: 20px;
+    -fx-alignment: CENTER;
+    -fx-spacing: 20; 
+}
+
 #imageView {
     position: absolute;
     -fx-position: absolute;
@@ -95,6 +102,12 @@
     -fx-border-radius: 5px;
     -fx-cursor: hand;
     -fx-transition-duration: 0.3s;
+}
+
+#blueBox {
+    -fx-background-color: #3498db; /* Blue background color */
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
 }
 
 .add-project-button:hover,

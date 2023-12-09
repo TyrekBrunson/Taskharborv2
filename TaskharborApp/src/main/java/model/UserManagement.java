@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class UserManagement {
     private static UserManagement userManager;
@@ -48,12 +48,14 @@ public class UserManagement {
 
     public boolean hasUser(String userName, String password) {
         for (User user : usersList) {
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+            if (Objects.equals(user.getUserName(), userName) && Objects.equals(user.getPassword(), password)) {
                 return true;
             }
         }
         return false;
     }
+    
+
 
     public void setUserList(ArrayList<User> userList) {
         this.usersList = userList;

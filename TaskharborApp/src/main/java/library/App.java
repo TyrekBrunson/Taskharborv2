@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
 import java.io.IOException;
@@ -51,21 +51,16 @@ public class App extends Application {
     }
     
     public static void navigateBack() throws IOException {
-        // Check if there is a previous FXML
         if (navigationHistory.size() > 1) {
-            // Pop the stack to get the previous FXML
             navigationHistory.pop();
 
             String lastLoadedFXML = navigationHistory.peek();
 
-            // Print for debugging purposes
             System.out.println("Going back to: " + lastLoadedFXML);
 
-            // Update the scene root
             Parent root = loadFXML(lastLoadedFXML);
             scene.setRoot(root);
 
-            // Print for debugging purposes
             System.out.println("Navigation History: " + navigationHistory);
         } else {
             System.out.println("No previous FXML found");

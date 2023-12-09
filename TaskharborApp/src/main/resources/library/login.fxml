@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.*?>
 
-<AnchorPane fx:id="login" id="AnchorPane" prefHeight="200" prefWidth="300" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<StackPane id="loginRoot" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
-        <TextField fx:id="usernameField" layoutX="50" layoutY="50" promptText="Username" />
-        <PasswordField fx:id="passwordField" layoutX="50" layoutY="80" promptText="Password" />
-        <Button layoutX="50" layoutY="120" onAction="#onLoginClicked" text="Login" styleClass="button" />
-        <Text fx:id="loginMessage" layoutX="50" layoutY="150" />
-        <Button layoutX="50" layoutY="190" onAction="#goBack" text="Back" styleClass="back-button" />
+        <Button fx:id="backButton" text="Back" styleClass="back-button" onAction="#goBack" StackPane.alignment="TOP_LEFT" />
+
+        <!-- Center the login elements both horizontally and vertically -->
+        <VBox spacing="10" alignment="CENTER">
+            <Text text="Login" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+            
+            <!-- Center the user input boxes horizontally -->
+            <HBox alignment="CENTER" spacing="10">
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Username:" />
+                    <TextField fx:id="usernameField" promptText="Enter your username" />
+                </GridPane>
+                <GridPane hgap="10" vgap="5">
+                    <Label text="Password:" />
+                    <PasswordField fx:id="passwordField" promptText="Enter your password" />
+                </GridPane>
+            </HBox>
+            
+            <Button fx:id="loginButton" text="Login" onAction="#onLoginClicked" styleClass="button" />
+            <Text fx:id="loginMessage" fill="RED" text="Invalid username or password" visible="false" />
+        </VBox>
     </children>
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
-</AnchorPane>
+</StackPane>

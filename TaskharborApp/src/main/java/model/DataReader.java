@@ -19,7 +19,7 @@ public class DataReader {
             File usersFile = new File("TaskharborApp/src/main/java/model/json/users.json");
             if (!usersFile.exists()) {
                 System.err.println("Error: Users file not found at path: " + usersFile.getAbsolutePath());
-                return userList;  // Return an empty list or handle the error accordingly
+                return userList;  
             }
 
             FileReader reader = new FileReader(usersFile);
@@ -28,7 +28,6 @@ public class DataReader {
 
             for (int i = 0; i < userListJSON.size(); i++) {
                 JSONObject userJSON = (JSONObject) userListJSON.get(i);
-                // (Rest of the code remains the same)
             }
             return userList;
 
@@ -36,7 +35,7 @@ public class DataReader {
             e.printStackTrace();
         }
 
-        return userList;  // Return an empty list or handle the error accordingly
+        return userList;  
     }
 
     public static ArrayList<Project> getProjects() {
@@ -46,7 +45,7 @@ public class DataReader {
             File projectFile = new File("TaskharborApp/src/main/java/model/json/project.json");
             if (!projectFile.exists()) {
                 System.err.println("Error: Project file not found at path: " + projectFile.getAbsolutePath());
-                return projectList;  // Return an empty list or handle the error accordingly
+                return projectList;  
             }
 
             FileReader reader = new FileReader(projectFile);
@@ -55,7 +54,6 @@ public class DataReader {
 
             for (int i = 0; i < projectListJSON.size(); i++) {
                 JSONObject projectJSON = (JSONObject) projectListJSON.get(i);
-                // (Rest of the code remains the same)
             }
             return projectList;
 
@@ -63,7 +61,7 @@ public class DataReader {
             e.printStackTrace();
         }
 
-        return projectList;  // Return an empty list or handle the error accordingly
+        return projectList;  
     }
     
 

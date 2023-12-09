@@ -60,18 +60,17 @@ public class UiFacade {
         try {
             if (userManagement.hasUser(userName, password)) {
                 currentUser = userManagement.getUser(userName, password);
-
                 loadProjectData();
-
                 return true;
+            } else {
+                return false;
             }
-
-            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+    
 
     public User getCurrentUser() {
         return currentUser;
